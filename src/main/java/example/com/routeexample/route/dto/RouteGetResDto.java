@@ -8,13 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RouteGetResDto {
     private Long startId;
     private String startName;
     private Long endId;
     private String endName;
     private Long distance;
-    private Long minutes;
+    private Long floor;
     private List<Node> nodeList = new ArrayList<>();
 }

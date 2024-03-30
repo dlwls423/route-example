@@ -14,10 +14,12 @@ public class Node {
     @GeneratedValue
     private Long id;
 
-    private String name;
-
     private Double latitude;
 
     private Double longitude;
+
+    private Long floor;
+
+    private Type type;
 
 }
