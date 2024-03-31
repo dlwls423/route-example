@@ -20,11 +20,11 @@ public class Edge {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "startId", nullable = false)
     private Node start;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "endId", nullable = false)
     private Node end;
 
     private Long distance;

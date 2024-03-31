@@ -1,5 +1,6 @@
 package example.com.routeexample.route.dto;
 
+import example.com.routeexample.route.entity.Node;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
