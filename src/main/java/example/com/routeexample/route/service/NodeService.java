@@ -1,5 +1,6 @@
 package example.com.routeexample.route.service;
 
+import example.com.routeexample.route.dto.RouteGetResDto;
 import example.com.routeexample.route.repository.NodeRepository;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,8 +11,10 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class NodeService {
@@ -20,7 +23,7 @@ public class NodeService {
 
     private static final Map<Long, Map<Long, Integer>> graph = new HashMap<>();
 
-    public void getRoute(Long startNodeId, Long endNodeId) {
+    public RouteGetResDto findRoute(Long startNodeId, Long endNodeId) {
         // 그래프
         graph.put(1L, new HashMap<>());
         graph.get(1L).put(2L, 14);
@@ -93,13 +96,13 @@ public class NodeService {
         graph.get(21L).put(6L, 30);
 
         // 최단 경로 찾기
-        Map<Long, Integer> distances = new HashMap<>();
+        Map<Long, Long> distances = new HashMap<>();
         Map<Long, Long> previousNodes = new HashMap<>();
-        PriorityQueue<NodeDistance> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(NodeDistance::getDistance));
+        PriorityQueue<NodeDistance> priorityQueue = new PriorityQueue<>(Comparator.comparingLong(NodeDistance::getDistance));
 
         // 초기화
         for (Long nodeId : graph.keySet()) {
-            distances.put(nodeId, nodeId.equals(startNodeId) ? 0 : Integer.MAX_VALUE);
+            distances.put(nodeId, nodeId.equals(startNodeId) ? 0 : Long.MAX_VALUE);
             previousNodes.put(nodeId, null);
             priorityQueue.add(new NodeDistance(nodeId, distances.get(nodeId)));
         }
@@ -110,7 +113,7 @@ public class NodeService {
 
             if (neighbors != null) {
                 for (Long neighborId : neighbors.keySet()) {
-                    int newDistance = distances.get(currentNodeId) + neighbors.get(neighborId);
+                    long newDistance = distances.get(currentNodeId) + neighbors.get(neighborId);
                     if (newDistance < distances.get(neighborId)) {
                         distances.put(neighborId, newDistance);
                         previousNodes.put(neighborId, currentNodeId);
@@ -130,16 +133,19 @@ public class NodeService {
         Collections.reverse(shortestPath);
 
         // 결과 출력
-        System.out.println("최단 경로: " + shortestPath);
-        System.out.println("최단 거리: " + distances.get(endNodeId));
+        RouteGetResDto routeGetResDto = new RouteGetResDto(startNodeId, "출발지 노드의 이름", endNodeId, "도착지 노드의 이름", distances.get(endNodeId), shortestPath);
+        log.info("최단 경로: " + shortestPath);
+        log.info("최단 거리: " + distances.get(endNodeId));
+
+        return routeGetResDto;
     }
 
     @Getter
     static class NodeDistance {
         private final Long nodeId;
-        private final Integer distance;
+        private final Long distance;
 
-        public NodeDistance(Long nodeId, Integer distance) {
+        public NodeDistance(Long nodeId, Long distance) {
             this.nodeId = nodeId;
             this.distance = distance;
         }

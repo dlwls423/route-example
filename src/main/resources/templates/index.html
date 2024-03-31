@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div th:text="'출발지: ' + ${routeInfo.startName}"></div>
+    <div th:text="'출발지 노드ID: ' + ${routeInfo.startId}"></div>
+    <div th:text="'도착지: ' + ${routeInfo.endName}"></div>
+    <div th:text="'도착지 노드ID: ' + ${routeInfo.endId}"></div>
+    <div th:text="'총 소요 시간(초): ' + ${routeInfo.distance}"></div>
+    <div th:text="'최단 경로: ' + ${routeInfo.path}"></div>
+</body>
+</html>
