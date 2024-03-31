@@ -5,12 +5,6 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 
-  neo4j:
-    uri: bolt://localhost:7687
-    authentication:
-      username: neo4j
-      password: ${NEO4J_PASSWORD}
-
   jpa:
     open-in-view: false
     hibernate:
