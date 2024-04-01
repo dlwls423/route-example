@@ -16,8 +16,9 @@ public class NodeController {
     private final NodeService nodeService;
 
     @GetMapping()
-    public String findRoute(Model model, @RequestParam(value = "start") Long startNodeId, @RequestParam(value = "end") Long endNodeId) {
-        RouteGetResDto routeGetResDto = nodeService.findRoute(startNodeId, endNodeId);
+    public String findRoute(Model model, @RequestParam String startBuilding, @RequestParam String startRoom,
+        @RequestParam String  endBuilding, @RequestParam String endRoom) {
+        RouteGetResDto routeGetResDto = nodeService.findRoute(startBuilding, startRoom, endBuilding, endRoom);
         model.addAttribute("routeInfo", routeGetResDto);
         return "index";
     }

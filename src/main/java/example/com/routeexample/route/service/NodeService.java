@@ -1,5 +1,7 @@
 package example.com.routeexample.route.service;
 
+import example.com.routeexample.alias.repository.AliasRepository;
+import example.com.routeexample.room.repository.RoomRepository;
 import example.com.routeexample.route.dto.RouteGetResDto;
 import example.com.routeexample.route.entity.Edge;
 import example.com.routeexample.route.entity.Node;
@@ -24,8 +26,23 @@ public class NodeService {
 
     private final NodeRepository nodeRepository;
     private final EdgeRepository edgeRepository;
+    private final RoomRepository roomRepository;
+    private final AliasRepository aliasRepository;
 
-    public RouteGetResDto findRoute(Long startNodeId, Long endNodeId) {
+    public RouteGetResDto findRoute(String startBuilding, String startRoom, String endBuilding, String endRoom) {
+        // 노드 ID 찾기
+        Long startNodeId = 0L;
+        Long endNodeId = 0L;
+
+        // 건물 ID 찾기
+        Long startBuildingId = aliasRepository.findByAlias(startBuilding).getBuilding().getId();
+        Long endBuildingId = aliasRepository.findByAlias(endBuilding).getBuilding().getId();
+
+        if(startBuildingId.equals(endBuildingId)) { // 같은 건물인 경우
+            startNodeId = roomRepository.findByName(startRoom).getNode().getId();
+            endNodeId = roomRepository.findByName(endRoom).getNode().getId();
+        }
+
         // 최단 경로 찾기
         Map<Long, Long> distances = new HashMap<>();
         Map<Long, Long> previousNodes = new HashMap<>();
@@ -66,7 +83,7 @@ public class NodeService {
         Collections.reverse(shortestPath);
 
         // 결과 출력
-        RouteGetResDto routeGetResDto = new RouteGetResDto(startNodeId, "출발지 노드의 이름", endNodeId, "도착지 노드의 이름", distances.get(endNodeId), shortestPath);
+        RouteGetResDto routeGetResDto = new RouteGetResDto(startNodeId, startBuilding + " " + startRoom, endNodeId, endBuilding + " " + endRoom, distances.get(endNodeId), shortestPath);
         log.info("최단 경로: " + shortestPath);
         log.info("최단 거리: " + distances.get(endNodeId));
 
