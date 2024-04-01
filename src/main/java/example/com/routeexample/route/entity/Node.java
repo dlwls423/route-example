@@ -22,7 +22,7 @@ public class Node {
 
     private Type type;
 
-    public Node(Double latitude, Double longitude, Long floor, Type type) {
+    public Node(Long id, Double latitude, Double longitude, Long floor, Type type) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.floor = floor;

@@ -1,7 +1,5 @@
 package example.com.routeexample.route.repository;
 
-import static example.com.routeexample.route.entity.Type.ENTRANCE;
-import static example.com.routeexample.route.entity.Type.NORMAL;
 import static org.junit.jupiter.api.Assertions.*;
 
 import example.com.routeexample.JpaConfig;
