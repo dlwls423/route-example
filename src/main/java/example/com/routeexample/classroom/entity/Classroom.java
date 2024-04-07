@@ -39,11 +39,12 @@ public class Classroom {
     @JoinColumn(name = "node_id")
     private Node node;
 
-    public Classroom(String name, String detail, Boolean plugAvailability, @Nullable String imageUrl,
+    public Classroom(String name, String detail, Boolean plugAvailability, Long floor, @Nullable String imageUrl,
         Building building, Node node) {
         this.name = name;
         this.detail = detail;
         this.plugAvailability = plugAvailability;
+        this.floor = floor;
         this.imageUrl = imageUrl;
         this.building = building;
         this.node = node;
