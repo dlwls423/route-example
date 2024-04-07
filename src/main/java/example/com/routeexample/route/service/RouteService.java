@@ -35,8 +35,8 @@ public class RouteService {
         Long endNodeId = 0L;
 
         // 건물 ID 찾기
-        Long startBuildingId = buildingNicknameRepository.findByAlias(startBuilding).getBuilding().getId();
-        Long endBuildingId = buildingNicknameRepository.findByAlias(endBuilding).getBuilding().getId();
+        Long startBuildingId = buildingNicknameRepository.findByNickname(startBuilding).getBuilding().getId();
+        Long endBuildingId = buildingNicknameRepository.findByNickname(endBuilding).getBuilding().getId();
 
         if(startBuildingId.equals(endBuildingId)) { // 같은 건물인 경우
             startNodeId = classroomRepository.findByName(startRoom).getNode().getId();
@@ -93,7 +93,7 @@ public class RouteService {
     public Map<Long, Long> findNeighbors(Long currentNodeId) {
         Map<Long, Long> neighbors = new HashMap<>();
         Node node = nodeRepository.findById(currentNodeId).orElseThrow();
-        List<Edge> edges = edgeRepository.findByStart(node);
+        List<Edge> edges = edgeRepository.findByStartNode(node);
         for(Edge edge : edges) {
             neighbors.put(edge.getEndNode().getId(), edge.getDistance());
         }

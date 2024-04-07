@@ -23,7 +23,6 @@ public class Node {
 
     private Long floor;
 
-    @Nullable
     @ManyToOne
     @JoinColumn(name = "building_id")
     private Building building;
