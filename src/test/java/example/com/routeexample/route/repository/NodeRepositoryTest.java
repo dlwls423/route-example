@@ -150,7 +150,7 @@ class NodeRepositoryTest {
         nodeRepository.save(Node.builder().building(udang).floor(2L).id(39L).longitude(408.0).latitude(120.0).build()); // 중앙
         nodeRepository.save(Node.builder().building(udang).floor(2L).id(40L).longitude(312.0).latitude(120.0).build());
         nodeRepository.save(Node.builder().building(udang).floor(2L).id(42L).longitude(260.0).latitude(120.0).build());
-        nodeRepository.save(Node.builder().building(udang).floor(2L).id(40L).longitude(157.0).latitude(120.0).build());
+        nodeRepository.save(Node.builder().building(udang).floor(2L).id(45L).longitude(157.0).latitude(120.0).build());
         nodeRepository.save(Node.builder().building(udang).floor(2L).id(47L).longitude(51.0).latitude(120.0).build());
     }
 
