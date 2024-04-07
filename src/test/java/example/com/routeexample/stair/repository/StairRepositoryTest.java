@@ -1,9 +1,12 @@
-package example.com.routeexample.buildingNickname.repository;
+package example.com.routeexample.stair.repository;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import example.com.routeexample.JpaConfig;
-import example.com.routeexample.buildingNickname.entity.BuildingNickname;
 import example.com.routeexample.building.entity.Building;
 import example.com.routeexample.building.repository.BuildingRepository;
+import example.com.routeexample.elevator.entity.Elevator;
+import example.com.routeexample.stair.entity.Stair;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 @DataJpaTest
 @Import(JpaConfig.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class BuildingNicknameRepositoryTest {
+class StairRepositoryTest {
     @Autowired
-    BuildingNicknameRepository buildingNicknameRepository;
+    StairRepository stairRepository;
 
     @Autowired
     BuildingRepository buildingRepository;
@@ -27,20 +30,10 @@ class BuildingNicknameRepositoryTest {
     @Disabled
     @Transactional
     @Rollback(value = false)
-    void save애기능() {
-        Building aegineung = buildingRepository.findByName("애기능생활관");
-        buildingNicknameRepository.save(new BuildingNickname(aegineung, "애기능"));
-        buildingNicknameRepository.save(new BuildingNickname(aegineung, "애기능 생활관"));
-        buildingNicknameRepository.save(new BuildingNickname(aegineung, "애기능생활관"));
-    }
-
-    @Test
-    @Disabled
-    @Transactional
-    @Rollback(value = false)
-    void save_우당교양관_별명() {
+    void save_우당교양관_계단() {
         Building udang = buildingRepository.findByName("우당교양관");
-        buildingNicknameRepository.save(new BuildingNickname(udang, "우당교양관"));
-        buildingNicknameRepository.save(new BuildingNickname(udang, "우당 교양관"));
+        stairRepository.save(new Stair(udang));
+        stairRepository.save(new Stair(udang));
+        stairRepository.save(new Stair(udang));
     }
 }

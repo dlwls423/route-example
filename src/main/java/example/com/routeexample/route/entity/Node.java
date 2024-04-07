@@ -1,7 +1,6 @@
 package example.com.routeexample.route.entity;
 
 import example.com.routeexample.building.entity.Building;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -14,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_node")
 public class Node {
     @Id
-    @GeneratedValue
     private Long id;
 
     private Double latitude;
@@ -33,6 +31,7 @@ public class Node {
         this.latitude = latitude;
         this.longitude = longitude;
         this.floor = floor;
+        this.building = building;
     }
 
 }

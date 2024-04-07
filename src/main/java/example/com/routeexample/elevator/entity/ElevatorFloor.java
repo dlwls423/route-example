@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class ElevatorFloor {
     @Id
     @GeneratedValue
-    private Long elevatorFloorId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "elevator_id")

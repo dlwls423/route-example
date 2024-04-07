@@ -20,9 +20,11 @@ public class Elevator {
     @GeneratedValue
     private Long id;
 
-    private Long floor;
-
     @ManyToOne
     @JoinColumn(name = "building_id")
     private Building building;
+
+    public Elevator(Building building) {
+        this.building = building;
+    }
 }
