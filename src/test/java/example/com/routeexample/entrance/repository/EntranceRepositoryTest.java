@@ -32,16 +32,27 @@ class EntranceRepositoryTest {
     @Autowired
     NodeRepository nodeRepository;
 
-    @Test
+//    @Test
 //    @Disabled
+//    @Transactional
+//    @Rollback(value = false)
+//    void save_애기능_출입구() {
+//        Building aegineung = buildingRepository.findByName("애기능생활관");
+//        Node frontNode = nodeRepository.findById(1L).orElseThrow();
+//        Node backNode = nodeRepository.findById(6L).orElseThrow();
+//
+//        entranceRepository.save(new Entrance("정문", aegineung, frontNode));
+//        entranceRepository.save(new Entrance("후문", aegineung, backNode));
+//    }
+
+    @Test
+    @Disabled
     @Transactional
     @Rollback(value = false)
-    void save애기능() {
-        Building aegineung = buildingRepository.findByName("애기능생활관");
-        Node frontNode = nodeRepository.findById(1L).orElseThrow();
-        Node backNode = nodeRepository.findById(6L).orElseThrow();
+    void save_우당교양관_출입구() {
+        Building udang = buildingRepository.findByName("우당교양관");
+        Node node = nodeRepository.findById(1L).orElseThrow();
 
-        entranceRepository.save(new Entrance("정문", aegineung, frontNode));
-        entranceRepository.save(new Entrance("후문", aegineung, backNode));
+        entranceRepository.save(new Entrance("정문", udang, node));
     }
 }
