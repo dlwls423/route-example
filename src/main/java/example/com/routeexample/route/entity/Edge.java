@@ -17,21 +17,21 @@ import lombok.NoArgsConstructor;
 public class Edge {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long edgeId;
 
     @ManyToOne
-    @JoinColumn(name = "startId", nullable = false)
-    private Node start;
+    @JoinColumn(name = "startNodeId", nullable = false)
+    private Node startNode;
 
     @ManyToOne
-    @JoinColumn(name = "endId", nullable = false)
-    private Node end;
+    @JoinColumn(name = "endNodeId", nullable = false)
+    private Node endNode;
 
     private Long distance;
 
-    public Edge(Node start, Node end, Long distance) {
-        this.start = start;
-        this.end = end;
+    public Edge(Node startNode, Node endNode, Long distance) {
+        this.startNode = startNode;
+        this.endNode = endNode;
         this.distance = distance;
     }
 }

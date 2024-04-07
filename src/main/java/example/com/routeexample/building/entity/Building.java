@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Building {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long buildingId;
 
     private String name;
 

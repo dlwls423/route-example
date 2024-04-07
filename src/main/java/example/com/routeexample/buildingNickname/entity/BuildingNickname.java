@@ -1,4 +1,4 @@
-package example.com.routeexample.alias.entity;
+package example.com.routeexample.buildingNickname.entity;
 
 import example.com.routeexample.building.entity.Building;
 import jakarta.persistence.Entity;
@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "tb_alias")
-public class Alias {
+@Table(name = "tb_building_nickname")
+public class BuildingNickname {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long buildingNicknameId;
 
     @ManyToOne
     @JoinColumn(name = "building_id")
@@ -26,7 +26,7 @@ public class Alias {
 
     private String alias;
 
-    public Alias(Building building, String alias) {
+    public BuildingNickname(Building building, String alias) {
         this.building = building;
         this.alias = alias;
     }

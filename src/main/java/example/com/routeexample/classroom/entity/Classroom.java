@@ -1,4 +1,4 @@
-package example.com.routeexample.room.entity;
+package example.com.routeexample.classroom.entity;
 
 import example.com.routeexample.building.entity.Building;
 import example.com.routeexample.route.entity.Node;
@@ -17,11 +17,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "tb_room")
-public class Room {
+@Table(name = "tb_classroom")
+public class Classroom {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long classroomId;
 
     private String name;
     private String detail;
@@ -38,7 +38,7 @@ public class Room {
     @JoinColumn(name = "node_id")
     private Node node;
 
-    public Room(String name, String detail, Boolean plugAvailability, @Nullable String imageUrl,
+    public Classroom(String name, String detail, Boolean plugAvailability, @Nullable String imageUrl,
         Building building, Node node) {
         this.name = name;
         this.detail = detail;

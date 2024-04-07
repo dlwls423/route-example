@@ -1,9 +1,7 @@
-package example.com.routeexample.alias.repository;
-
-import static org.junit.jupiter.api.Assertions.*;
+package example.com.routeexample.buildingNickname.repository;
 
 import example.com.routeexample.JpaConfig;
-import example.com.routeexample.alias.entity.Alias;
+import example.com.routeexample.buildingNickname.entity.BuildingNickname;
 import example.com.routeexample.building.entity.Building;
 import example.com.routeexample.building.repository.BuildingRepository;
 import org.junit.jupiter.api.Disabled;
@@ -18,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 @DataJpaTest
 @Import(JpaConfig.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class AliasRepositoryTest {
+class BuildingNicknameRepositoryTest {
     @Autowired
-    AliasRepository aliasRepository;
+    BuildingNicknameRepository buildingNicknameRepository;
 
     @Autowired
     BuildingRepository buildingRepository;
@@ -31,8 +29,8 @@ class AliasRepositoryTest {
     @Rollback(value = false)
     void save애기능() {
         Building aegineung = buildingRepository.findByName("애기능생활관");
-        aliasRepository.save(new Alias(aegineung, "애기능"));
-        aliasRepository.save(new Alias(aegineung, "애기능 생활관"));
-        aliasRepository.save(new Alias(aegineung, "애기능생활관"));
+        buildingNicknameRepository.save(new BuildingNickname(aegineung, "애기능"));
+        buildingNicknameRepository.save(new BuildingNickname(aegineung, "애기능 생활관"));
+        buildingNicknameRepository.save(new BuildingNickname(aegineung, "애기능생활관"));
     }
 }

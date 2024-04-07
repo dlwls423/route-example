@@ -1,7 +1,7 @@
 package example.com.routeexample.route.service;
 
-import example.com.routeexample.alias.repository.AliasRepository;
-import example.com.routeexample.room.repository.RoomRepository;
+import example.com.routeexample.buildingNickname.repository.BuildingNicknameRepository;
+import example.com.routeexample.classroom.repository.ClassroomRepository;
 import example.com.routeexample.route.dto.RouteGetResDto;
 import example.com.routeexample.route.entity.Edge;
 import example.com.routeexample.route.entity.Node;
@@ -22,12 +22,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class NodeService {
+public class RouteService {
 
     private final NodeRepository nodeRepository;
     private final EdgeRepository edgeRepository;
-    private final RoomRepository roomRepository;
-    private final AliasRepository aliasRepository;
+    private final ClassroomRepository classroomRepository;
+    private final BuildingNicknameRepository buildingNicknameRepository;
 
     public RouteGetResDto findRoute(String startBuilding, String startRoom, String endBuilding, String endRoom) {
         // 노드 ID 찾기
@@ -35,12 +35,12 @@ public class NodeService {
         Long endNodeId = 0L;
 
         // 건물 ID 찾기
-        Long startBuildingId = aliasRepository.findByAlias(startBuilding).getBuilding().getId();
-        Long endBuildingId = aliasRepository.findByAlias(endBuilding).getBuilding().getId();
+        Long startBuildingId = buildingNicknameRepository.findByAlias(startBuilding).getBuilding().getBuildingId();
+        Long endBuildingId = buildingNicknameRepository.findByAlias(endBuilding).getBuilding().getBuildingId();
 
         if(startBuildingId.equals(endBuildingId)) { // 같은 건물인 경우
-            startNodeId = roomRepository.findByName(startRoom).getNode().getId();
-            endNodeId = roomRepository.findByName(endRoom).getNode().getId();
+            startNodeId = classroomRepository.findByName(startRoom).getNode().getNodeId();
+            endNodeId = classroomRepository.findByName(endRoom).getNode().getNodeId();
         }
 
         // 최단 경로 찾기
@@ -51,7 +51,7 @@ public class NodeService {
 
         // 초기화
         for (Node node : nodes) {
-            Long nodeId = node.getId();
+            Long nodeId = node.getNodeId();
             distances.put(nodeId, nodeId.equals(startNodeId) ? 0 : Long.MAX_VALUE);
             previousNodes.put(nodeId, null);
             priorityQueue.add(new NodeDistance(nodeId, distances.get(nodeId)));
@@ -95,7 +95,7 @@ public class NodeService {
         Node node = nodeRepository.findById(currentNodeId).orElseThrow();
         List<Edge> edges = edgeRepository.findByStart(node);
         for(Edge edge : edges) {
-            neighbors.put(edge.getEnd().getId(), edge.getDistance());
+            neighbors.put(edge.getEndNode().getNodeId(), edge.getDistance());
         }
         return neighbors;
     }
