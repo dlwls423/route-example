@@ -1,7 +1,9 @@
 package example.com.routeexample.route.entity;
 
+import example.com.routeexample.building.entity.Building;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_node")
 public class Node {
     @Id
-    @GeneratedValue
     private Long id;
 
     private Double latitude;
@@ -20,12 +21,17 @@ public class Node {
 
     private Long floor;
 
-    private Type type;
+    @ManyToOne
+    @JoinColumn(name = "building_id")
+    private Building building;
 
-    public Node(Double latitude, Double longitude, Long floor, Type type) {
+    @Builder
+    public Node(Long id, Double latitude, Double longitude, Long floor, Building building) {
+        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.floor = floor;
-        this.type = type;
+        this.building = building;
     }
+
 }
