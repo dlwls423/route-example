@@ -1,6 +1,5 @@
-package example.com.routeexample.entrance.entity;
+package example.com.routeexample.elevator.entity;
 
-import example.com.routeexample.building.entity.Building;
 import example.com.routeexample.route.entity.Node;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,25 +15,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "tb_entrance")
-public class Entrance {
+@Table(name = "tb_elevator_floor")
+public class ElevatorFloor {
     @Id
     @GeneratedValue
-    private Long id;
-
-    private String detail;
+    private Long elevatorFloorId;
 
     @ManyToOne
-    @JoinColumn(name = "building_id")
-    private Building building;
+    @JoinColumn(name = "elevator_id")
+    private Elevator elevator;
 
     @OneToOne
     @JoinColumn(name = "node_id")
     private Node node;
-
-    public Entrance(String detail, Building building, Node node) {
-        this.detail = detail;
-        this.building = building;
-        this.node = node;
-    }
 }

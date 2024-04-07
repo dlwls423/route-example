@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Edge {
     @Id
     @GeneratedValue
-    private Long edgeId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "startNodeId", nullable = false)

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Building {
     @Id
     @GeneratedValue
-    private Long buildingId;
+    private Long id;
 
     private String name;
 
@@ -27,12 +27,18 @@ public class Building {
 
     private Boolean needStudentCard;
 
+    private Double longitude;
+
+    private Double latitude;
+
     public Building(String name, String detail, String address, String operatingTime,
-        Boolean needStudentCard) {
+        Boolean needStudentCard, Double longitude, Double latitude) {
         this.name = name;
         this.detail = detail;
         this.address = address;
         this.operatingTime = operatingTime;
         this.needStudentCard = needStudentCard;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 }

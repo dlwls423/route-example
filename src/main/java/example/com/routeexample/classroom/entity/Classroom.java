@@ -21,11 +21,12 @@ import lombok.NoArgsConstructor;
 public class Classroom {
     @Id
     @GeneratedValue
-    private Long classroomId;
+    private Long id;
 
     private String name;
     private String detail;
     private Boolean plugAvailability;
+    private Long floor;
 
     @Nullable
     private String imageUrl;

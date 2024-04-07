@@ -35,12 +35,12 @@ public class RouteService {
         Long endNodeId = 0L;
 
         // 건물 ID 찾기
-        Long startBuildingId = buildingNicknameRepository.findByAlias(startBuilding).getBuilding().getBuildingId();
-        Long endBuildingId = buildingNicknameRepository.findByAlias(endBuilding).getBuilding().getBuildingId();
+        Long startBuildingId = buildingNicknameRepository.findByAlias(startBuilding).getBuilding().getId();
+        Long endBuildingId = buildingNicknameRepository.findByAlias(endBuilding).getBuilding().getId();
 
         if(startBuildingId.equals(endBuildingId)) { // 같은 건물인 경우
-            startNodeId = classroomRepository.findByName(startRoom).getNode().getNodeId();
-            endNodeId = classroomRepository.findByName(endRoom).getNode().getNodeId();
+            startNodeId = classroomRepository.findByName(startRoom).getNode().getId();
+            endNodeId = classroomRepository.findByName(endRoom).getNode().getId();
         }
 
         // 최단 경로 찾기
@@ -51,7 +51,7 @@ public class RouteService {
 
         // 초기화
         for (Node node : nodes) {
-            Long nodeId = node.getNodeId();
+            Long nodeId = node.getId();
             distances.put(nodeId, nodeId.equals(startNodeId) ? 0 : Long.MAX_VALUE);
             previousNodes.put(nodeId, null);
             priorityQueue.add(new NodeDistance(nodeId, distances.get(nodeId)));
@@ -95,7 +95,7 @@ public class RouteService {
         Node node = nodeRepository.findById(currentNodeId).orElseThrow();
         List<Edge> edges = edgeRepository.findByStart(node);
         for(Edge edge : edges) {
-            neighbors.put(edge.getEndNode().getNodeId(), edge.getDistance());
+            neighbors.put(edge.getEndNode().getId(), edge.getDistance());
         }
         return neighbors;
     }

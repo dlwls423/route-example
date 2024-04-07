@@ -18,16 +18,16 @@ import lombok.NoArgsConstructor;
 public class BuildingNickname {
     @Id
     @GeneratedValue
-    private Long buildingNicknameId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "building_id")
     private Building building;
 
-    private String alias;
+    private String nickname;
 
-    public BuildingNickname(Building building, String alias) {
+    public BuildingNickname(Building building, String nickname) {
         this.building = building;
-        this.alias = alias;
+        this.nickname = nickname;
     }
 }

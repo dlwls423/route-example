@@ -27,6 +27,6 @@ class BuildingRepositoryTest {
     @Transactional
     @Rollback(value = false)
     void save애기능() {
-        buildingRepository.save(new Building("애기능생활관", "고려대학교 서울캠퍼스 애기능생활관", "서울 성북구 안암로 73-15", "운영시간", false));
+        buildingRepository.save(new Building("애기능생활관", "고려대학교 서울캠퍼스 애기능생활관", "서울 성북구 안암로 73-15", "운영시간", false, 0.0, 0.0));
     }
 }
