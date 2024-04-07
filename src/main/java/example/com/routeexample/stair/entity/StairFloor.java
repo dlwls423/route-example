@@ -28,4 +28,12 @@ public class StairFloor {
     @OneToOne
     @JoinColumn(name = "node_id")
     private Node node;
+
+    private Long floor;
+
+    public StairFloor(Stair stair, Node node, Long floor) {
+        this.stair = stair;
+        this.node = node;
+        this.floor = floor;
+    }
 }
