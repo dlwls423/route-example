@@ -258,8 +258,8 @@ class EdgeRepositoryTest {
     void save_우당교양관_2층_간선() {
         // 24번 노드
         edgeRepository.save(new Edge(nodeRepository.findById(27L).orElseThrow(),
-            nodeRepository.findById(24L).orElseThrow(), 3L));
-        edgeRepository.save(new Edge(nodeRepository.findById(24L).orElseThrow(),
+            nodeRepository.findById(29L).orElseThrow(), 3L));
+        edgeRepository.save(new Edge(nodeRepository.findById(29L).orElseThrow(),
             nodeRepository.findById(27L).orElseThrow(), 3L));
         edgeRepository.save(new Edge(nodeRepository.findById(24L).orElseThrow(),
             nodeRepository.findById(28L).orElseThrow(), 1L));
