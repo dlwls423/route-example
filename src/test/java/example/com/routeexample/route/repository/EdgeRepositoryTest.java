@@ -265,14 +265,14 @@ class EdgeRepositoryTest {
             nodeRepository.findById(28L).orElseThrow(), 1L));
         edgeRepository.save(new Edge(nodeRepository.findById(28L).orElseThrow(),
             nodeRepository.findById(24L).orElseThrow(), 1L));
-        edgeRepository.save(new Edge(nodeRepository.findById(24L).orElseThrow(),
+        edgeRepository.save(new Edge(nodeRepository.findById(29L).orElseThrow(),
             nodeRepository.findById(30L).orElseThrow(), 1L));
         edgeRepository.save(new Edge(nodeRepository.findById(30L).orElseThrow(),
-            nodeRepository.findById(24L).orElseThrow(), 1L));
-        edgeRepository.save(new Edge(nodeRepository.findById(24L).orElseThrow(),
+            nodeRepository.findById(29L).orElseThrow(), 1L));
+        edgeRepository.save(new Edge(nodeRepository.findById(29L).orElseThrow(),
             nodeRepository.findById(31L).orElseThrow(), 12L));
         edgeRepository.save(new Edge(nodeRepository.findById(31L).orElseThrow(),
-            nodeRepository.findById(24L).orElseThrow(), 12L));
+            nodeRepository.findById(29L).orElseThrow(), 12L));
 
         // 31번 노드
         edgeRepository.save(new Edge(nodeRepository.findById(31L).orElseThrow(),
